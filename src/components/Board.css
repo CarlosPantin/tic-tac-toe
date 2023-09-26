@@ -1,0 +1,66 @@
+
+.board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #333;
+  
+}
+
+.board-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Remove the top border from the first row */
+.board .board-row:first-child {
+  border-top: none;
+}
+
+/* Remove the bottom border from the last row */
+.board .board-row:last-child {
+  border-bottom: none;
+}
+
+h1{
+    text-align: center;
+}
+
+.game-status {
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+  background-color: #0a4d6e;
+  
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  width: 100px;
+  height: 100px;
+  margin: 2px;
+  user-select: none; /* Disable text selection in squares */
+}
+
+.square:hover {
+  background-color: #555;
+}
+
+/* X and O styles */
+.square-X {
+  color: #f44336; /* Red for X */
+}
+
+.square-O {
+  color: #2196f3; /* Blue for O */
+}
