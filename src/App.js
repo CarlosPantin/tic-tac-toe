@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Board from './components/Board';
-import Confetti from 'react-confetti'; 
+import Confetti from 'react-confetti';
 import './App.css';
 
 class App extends Component {
@@ -48,6 +48,11 @@ class App extends Component {
       }
     }
 
+  
+    if (squares.every((square) => square)) {
+      return 'Tie';
+    }
+
     return null;
   }
 
@@ -61,26 +66,24 @@ class App extends Component {
 
   render() {
     const status = this.state.winner
-      ? `Winner: ${this.state.winner}`
+      ? this.state.winner === 'Tie'
+        ? 'It\'s a Tie!'
+        : `Winner: ${this.state.winner}`
       : `Next player: ${this.state.currentPlayer}`;
 
-      return (
-        <div className="app">
-          <h1>Tic-Tac-Toe</h1>
-          {this.state.winner && <Confetti />}
-          <Board
-            squares={this.state.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-          <div className="game-status">{status}</div>
-          {this.state.winner && (
-            <button onClick={() => this.resetGame()} className="button">
-              Play Again
-            </button>
-          )}
-        </div>
-      );
-      
+    return (
+      <div className="app">
+        <h1>Tic-Tac-Toe</h1>
+        {this.state.winner && this.state.winner !== 'Tie' && <Confetti />}
+        <Board squares={this.state.squares} onClick={(i) => this.handleClick(i)} />
+        <div className="game-status">{status}</div>
+        {(this.state.winner || this.state.squares.every((square) => square)) && (
+          <button onClick={() => this.resetGame()} className="button">
+            Play Again
+          </button>
+        )}
+      </div>
+    );
   }
 }
 
